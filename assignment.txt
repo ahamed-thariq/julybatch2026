@@ -1,0 +1,16 @@
+assignment git
+12th July
+1: try git commands under the git cheat sheet
+https://education.github.com/git-cheat-sheet-education.pdf
+specially look for a differnce between the command git pull and git fetch
+
+2: go through git branching strategy 
+
+https://medium.com/@dmosyan/version-control-branching-strategies-e68e8d5ef1e0
+
+
+3: currently you are using https as authentucation method but try to explore
+ssh method for authenitcation
+
+
+4: try to create the branches dev,qa,prod and apply the branching policies
