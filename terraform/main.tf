@@ -1,9 +1,7 @@
-provider "aws" {
-  region = "us-east-1"
-}
+
 
 resource "aws_s3_bucket" "example" {
-  bucket = "jatinbhalla1991"
+  bucket = var.bucket_name
 
   tags = {
     Name        = "My bucket"
@@ -12,10 +10,10 @@ resource "aws_s3_bucket" "example" {
 }
 
 resource "aws_security_group" "example" {
-  name        = "jatinbhalla1991-security-group"
-  description = "jatinbhalla1991 security group"
+  name        = var.security_group_name
+  description = var.security_group_description
   tags = {
-    Name = "jatinbhalla1991-security-group"
+    Name = var.security_group_name
   }
 
   ingress {
