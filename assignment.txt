@@ -20,3 +20,12 @@ ssh method for authenitcation
 1. create a self hosted runner laptop
 2. in which scenerios you should use self hosted and github runners
 3. create a artifac and check if you can see packages
+
+
+19th July
+1. create a code for ec2 instance with security group attached
+2. try to search for other terraform commands and there purposes
+like 
+terraform fmt
+terraform validate
+3. optional( check how we create multiple s3 buckets)
