@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Sample Java Website</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <main>
+        <h1 th:text="${title}">Sample Java Website</h1>
+        <p th:text="${message}">Your first Java website is running!</p>
+        <a href="https://spring.io/projects/spring-boot" target="_blank">Learn more about Spring Boot</a>
+    </main>
+</body>
+</html>

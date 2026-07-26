@@ -9,3 +9,4 @@ variable "security_group_name" {
 variable "security_group_description" {
     type = string
 }
+
