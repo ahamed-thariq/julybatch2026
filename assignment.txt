@@ -29,3 +29,12 @@ like
 terraform fmt
 terraform validate
 3. optional( check how we create multiple s3 buckets)
+
+date 25th july
+assignment
+1. try to create multiple resource using for each loop
+2. try to use terraform modules and create resources
+3. you need to create the terraform code for below resources
+  a. jenkins and ansible (2 ec2 instances)
+  b. create code for ecr (docker)
+  c. create a code for kubernetes cluster ( kubernetes)

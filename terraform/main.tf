@@ -1,25 +1,16 @@
-
-
-resource "aws_s3_bucket" "example" {
-  bucket = var.bucket_name
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
+module "s3_bucket" {
+  source = "./s3_bucket"
+  bucket_name = var.bucket_name
 }
 
-resource "aws_security_group" "example" {
-  name        = var.security_group_name
-  description = var.security_group_description
-  tags = {
-    Name = var.security_group_name
-  }
+module "security_group" {
+  source = "./security_group"
+  security_group_name = var.security_group_name
+  security_group_description = var.security_group_description
+}
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+module "ec2" {
+  depends_on = [module.security_group]
+  source = "./ec2"
+  security_group_id = module.security_group.aws_security_group_id
 }
