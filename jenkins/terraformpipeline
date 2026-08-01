@@ -1,0 +1,103 @@
+pipeline {
+    agent any
+
+    options {
+        ansiColor('xterm')
+        timestamps()
+    }
+
+    parameters {
+        choice(
+            name: 'TERRAFORM_ACTION',
+            choices: 'plan\napply\ndestroy',
+            description: 'Choose the Terraform action to perform'
+        )
+        string(name: 'AWS_REGION', defaultValue: 'us-east-1', description: 'AWS region for Terraform AWS provider')
+    }
+
+    environment {
+        TERRAFORM_DIR = 'terraform'
+        AWS_DEFAULT_REGION = "${AWS_REGION}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir(env.TERRAFORM_DIR) {
+                    script {
+                        if (isUnix()) {
+                            sh 'terraform init -input=false'
+                        } else {
+                            bat 'terraform init -input=false'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            when {
+                expression { params.TERRAFORM_ACTION == 'plan' || params.TERRAFORM_ACTION == 'apply' }
+            }
+            steps {
+                dir(env.TERRAFORM_DIR) {
+                    script {
+                        if (isUnix()) {
+                            sh 'terraform plan -out=tfplan -input=false'
+                        } else {
+                            bat 'terraform plan -out=tfplan -input=false'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            when {
+                expression { params.TERRAFORM_ACTION == 'apply' }
+            }
+            steps {
+                input message: 'Confirm Terraform apply?', ok: 'Apply'
+                dir(env.TERRAFORM_DIR) {
+                    script {
+                        if (isUnix()) {
+                            sh 'terraform apply -input=false -auto-approve tfplan'
+                        } else {
+                            bat 'terraform apply -input=false -auto-approve tfplan'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Terraform Destroy') {
+            when {
+                expression { params.TERRAFORM_ACTION == 'destroy' }
+            }
+            steps {
+                input message: 'Confirm Terraform destroy?', ok: 'Destroy'
+                dir(env.TERRAFORM_DIR) {
+                    script {
+                        if (isUnix()) {
+                            sh 'terraform destroy -input=false -auto-approve'
+                        } else {
+                            bat 'terraform destroy -input=false -auto-approve'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'terraform/**/*.tf', allowEmptyArchive: true
+        }
+    }
+}

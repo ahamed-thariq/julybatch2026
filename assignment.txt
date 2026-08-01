@@ -45,3 +45,10 @@ assignment jenkins
 2. create a simple shell script which will create a folder1 and file in the folder1, then create another folder2, at the end the file whould be copied from folder 1 to folder 2
 3. try to run the above script using the jenkins free style project
 4. see the console output if everything is successful then manually check on ec2 instance the folder and files should exists
+
+date 1st august
+assignment jenkins
+1. try to create the agent in jenkins and use in your pipeline to run the jobs
+2. try to create a terraform pipeline, whenver you run the pipeline it should create the resources on aws
+additional take inputs from the user like
+if user has entered input as plan then only plan stage should run, if user gived input as apply then apply should run and if user gives the input as destroy then the resources should be destroyed
