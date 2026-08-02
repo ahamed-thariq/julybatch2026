@@ -1,0 +1,27 @@
+steps to follow in the master machine
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install ansible -y
+ansible --version
+
+ssh-keygen -t rsa -b 4096 -C "ubuntu"
+
+go inside the directory 
+/home/ubuntu/.ssh
+
+print the value for id_rsa.pub
+
+
+
+steps to follow in the target machine
+login to the machine
+go to /home/ubuntu/.ssh folder 
+sudo nano authorized keys and copy the public key from the master machine
+
+
+
+
+once above steps are done to make sure your authentication is done try to run below command
+ssh ubuntu@targetmachine ip address
+
