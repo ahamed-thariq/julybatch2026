@@ -52,3 +52,16 @@ assignment jenkins
 2. try to create a terraform pipeline, whenver you run the pipeline it should create the resources on aws
 additional take inputs from the user like
 if user has entered input as plan then only plan stage should run, if user gived input as apply then apply should run and if user gives the input as destroy then the resources should be destroyed
+
+
+date 2nd august
+assignment ansible
+1. try to create a conditions bases playbook
+example
+
+your playbook should check if the target machine os is windows then install the java verison 21
+if your target machine os is linux then install the java version as 17
+
+2. check if my public ip address is frequently changing then what are the alternate ways and try to implement the dynamic ip address concept
+
+3. try to study about ansible tower and awx

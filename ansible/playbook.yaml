@@ -13,3 +13,9 @@
         name: apache2
         state: started
         enabled: yes
+
+    - name: Copy HTML file to Apache web root
+      copy:
+        src: /etc/ansible/index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
