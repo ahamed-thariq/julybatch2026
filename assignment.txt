@@ -65,3 +65,20 @@ if your target machine os is linux then install the java version as 17
 2. check if my public ip address is frequently changing then what are the alternate ways and try to implement the dynamic ip address concept
 
 3. try to study about ansible tower and awx
+
+8 august
+assignment: ansible
+
+create the 2 roles
+1. MySQL setup
+2. postgress 
+
+
+create a playbook inside the ansible folder
+run the apache role by default
+but for database you need to pass the variable means if while running the playbook by argument is my sql then run the role my sql if input is postgress then run the role of postgress
+
+additionally:
+you need to pass some secrets
+username
+password but these values should be stored in ansible vault
